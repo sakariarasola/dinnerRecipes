@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Add ingredient</title>
+</head>
+
+<body>
+	<h1>Add ingredient</h1>
+	<div>
+		<form th:object="${ingredient}" th:action="@{saveingredient}" action="#" method="post">
+			<label for="name">Name</label>
+			<input type="text" id="name" th:field="*{name}" />
+			<label for="unitprice">Unit price</label>
+			<input type="text" id="unitprice" th:field="*{unitprice}" />
+
+			<input type="submit" value="Save"></input>
+		</form>
+	</div>
+</body>
+
+</html>

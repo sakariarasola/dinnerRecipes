@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Add recipe</title>
+</head>
+
+<body>
+	<h1>Add recipe</h1>
+	<div>
+		<form th:object="${recipe}" th:action="@{saverecipe}" action="#" method="post">
+			<label for="name">Name</label>
+			<input type="text" id="name" th:field="*{name}" />
+			<label for="allergen">Allergen</label>
+			<input type="text" id="allergen" th:field="*{allergen}" />
+			<label for="difficulty">Difficulty</label>
+			<input type="text" id="difficulty" th:field="*{difficulty}" />
+			<label for="totaltime">Total time</label>
+			<input type="text" id="totaltime" th:field="*{totaltime}" />
+			<label for="servings">Servings</label>
+			<input type="text" id="servings" th:field="*{servings}" />
+			<select multiple id="ingredientlist" th:field="*{ingredients}" class="form-control">
+				<option th:each="ingredient : ${ingredients}" th:value="${ingredient.id}" th:text="${ingredient.name}">
+					${ingredient.name}</option>
+			</select>
+			<label for="instructions">Instructions</label>
+			<input type="text" id="instructions" th:field="*{instructions}" />
+			<label for="cuisinelist">Cuisine</label>
+			<select id="cuisinelist" th:field="*{cuisine}" class="form-control">
+				<option th:each="cuisine: ${cuisines}" th:value="${cuisine.id}" th:text="${cuisine.name}">
+				</option>
+			</select>
+
+			<input type="submit" value="Save"></input>
+		</form>
+	</div>
+</body>
+
+</html>

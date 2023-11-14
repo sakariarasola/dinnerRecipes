@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Edit recipe</title>
+</head>
+
+<body>
+	<h1>Edit recipe</h1>
+	<div>
+		<form th:object="${recipe}" th:action="@{../saverecipe}" action="#" method="post">
+			<input type="hidden" th:field="*{id}" class="form-control" />
+			<input type="text" th:field="*{name}" />
+			<input type="text" th:field="*{allergen}" />
+			<input type="text" th:field="*{difficulty}" />
+			<input type="text" th:field="*{totaltime}" />
+			<input type="text" th:field="*{servings}" />
+			<select multiple id="ingredientlist" th:field="*{ingredients}" class="form-control">
+				<option th:each="ingredient: ${ingredients}" th:value="${ingredient.id}" th:text="${ingredient.name}">
+				</option>
+			</select>
+			<input type="text" th:field="*{instructions}" />
+			<select id="cuisinelist" th:field="*{cuisine}" class="form-control">
+				<option th:each="cuisine: ${cuisines}" th:value="${cuisine.id}" th:text="${cuisine.name}">
+				</option>
+			</select>
+			<input type="submit" value="Save"></input>
+		</form>
+</body>
+
+</html>
