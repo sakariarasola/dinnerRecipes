@@ -53,9 +53,9 @@ CREATE TABLE users (
   PRIMARY KEY (`id`)
 );
 
-CREATE SEQUENCE recipe_seq START WITH 2 INCREMENT BY 1;
+CREATE SEQUENCE recipe_seq START WITH 3 INCREMENT BY 1;
 
-CREATE SEQUENCE ingredient_seq START WITH 10 INCREMENT BY 1;
+CREATE SEQUENCE ingredient_seq START WITH 17 INCREMENT BY 1;
 
 CREATE SEQUENCE cuisine_seq START WITH 5 INCREMENT BY 1;
 
@@ -67,18 +67,28 @@ INSERT INTO recipe (name, allergen, difficulty, totaltime, servings, instruction
 Murenna päälle liemikuutio. Lisää vesi ja pippurit. Sekoita tasaiseksi ja kiehauta.
 Lisää ruokakerma. Keitä 5 min.
 Viimeistele kastike halutessasi hienonnetulla persiljalla.
-Tarjoa keitettyjen perunoiden ja salaatin kanssa.' ,1);
+Tarjoa keitettyjen perunoiden ja salaatin kanssa.' , 1)
+,('Yhden pannun tonnikalapasta', 'laktoosi, pippuri', 'helppo', 20, 4, 'Valmista ruoka n. 3 l kattilassa tai kasarissa. Kiehauta vesi ja liemikuutio. Lisää pasta, kirsikkatomaatit sekä ruokakerma.
+Keitä kannen alla n. 10 min välillä kevyesti sekoittaen. Lisää valutettu tonnikala, pinaatinlehdet sekä kaprikset. Viimeistele mustapippurilla. Kuumenna ja tarjoile juustoraasteen kanssa.',
+2);
 
 INSERT INTO ingredient (name, unitprice) VALUES
 ('paistijauheliha', 6),
 ('kerma', 1.50),
 ('suola', 0),
-('pippuri', 0),
+('mustapippuri', 0),
 ('peruna', 2),
 ('jäävuorisalaatti', 1.50),
 ('kurkku', 1.50),
 ('kirsikkatomaatti', 2),
-('oliiviöljy', 0);
+('oliiviöljy', 0),
+('liemikuutio', 0),
+('nauhapasta', 4),
+('ruokakerma sweet chili', 2),
+('tonnikalaa öljyssä', 2),
+('babypinaatti', 2.2),
+('kapris', 1),
+('vesi', 0);
 
 INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES
 (1, 1),
@@ -89,7 +99,19 @@ INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES
 (1, 6),
 (1, 7),
 (1, 8),
-(1, 9);
+(1, 9),
+(1, 10),
+(1, 16),
+(2, 16),
+(2, 10),
+(2, 11),
+(2, 2),
+(2, 12),
+(2, 13),
+(2, 14),
+(2, 15),
+(2, 4);
+
 
 INSERT INTO users (username, password, role)
 VALUES

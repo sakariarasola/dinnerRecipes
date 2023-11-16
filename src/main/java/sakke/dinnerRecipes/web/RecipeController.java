@@ -1,16 +1,20 @@
 package sakke.dinnerRecipes.web;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+//import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.ResponseBody;
-//import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+//import jakarta.validation.Valid;
 import sakke.dinnerRecipes.domain.CuisineRepository;
 import sakke.dinnerRecipes.domain.IngredientRepository;
 import sakke.dinnerRecipes.domain.Recipe;
@@ -24,11 +28,12 @@ public class RecipeController {
 
 	@Autowired
 	private IngredientRepository irepository;
-	
+
 	@Autowired
 	private CuisineRepository crepository;
-	
-	public RecipeController(RecipeRepository repository, IngredientRepository irepository, CuisineRepository crepository) {
+
+	public RecipeController(RecipeRepository repository, IngredientRepository irepository,
+			CuisineRepository crepository) {
 		this.repository = repository;
 		this.irepository = irepository;
 		this.crepository = crepository;
@@ -39,10 +44,20 @@ public class RecipeController {
 		model.addAttribute("recipes", repository.findAll());
 		return "recipelist";
 	}
-	
+
 	@RequestMapping(value = { "login" })
 	public String login(Model model) {
 		return "redirect:recipelist";
+	}
+
+	@GetMapping(value = { "recipes" })
+	public @ResponseBody List<Recipe> recipeListRest() {
+		return (List<Recipe>) repository.findAll();
+	}
+
+	@GetMapping(value = "recipe/{id}")
+	public @ResponseBody Optional<Recipe> findRecipeRest(@PathVariable("id") Long recipeId) {
+		return repository.findById(recipeId);
 	}
 
 	@PreAuthorize("hasAuthority('ADMIN')")
@@ -75,4 +90,5 @@ public class RecipeController {
 		model.addAttribute("cuisines", crepository.findAll());
 		return "editrecipe";
 	}
+
 }

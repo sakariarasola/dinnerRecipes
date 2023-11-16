@@ -11,6 +11,8 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Recipe {
@@ -18,12 +20,19 @@ public class Recipe {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "recipe_seq")
 	@SequenceGenerator(name = "recipe_seq", sequenceName = "recipe_seq", allocationSize = 1)
+	@NotNull
 	private Long id;
+	@NotNull
 	private String name;
 	private String allergen;
+	@NotNull
 	private String difficulty;
+	@NotNull
 	private int totaltime;
+	@NotNull
 	private int servings;
+	@NotNull
+	@Size(max = 10000)
 	private String instructions;
 
 	@ManyToMany
@@ -54,7 +63,8 @@ public class Recipe {
 
 	}
 
-	public Recipe(String name, String allergen, String difficulty, int totaltime, int servings, List<Ingredient> ingredients ,String instructions, Cuisine cuisine) {
+	public Recipe(String name, String allergen, String difficulty, int totaltime, int servings,
+			List<Ingredient> ingredients, String instructions, Cuisine cuisine) {
 		this.name = name;
 		this.allergen = allergen;
 		this.difficulty = difficulty;

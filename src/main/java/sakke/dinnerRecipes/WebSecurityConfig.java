@@ -22,6 +22,7 @@ public class WebSecurityConfig {
 		http.authorizeHttpRequests(authorizeRequest -> authorizeRequest
 				.requestMatchers(antMatcher("/")).permitAll()
 				//.requestMatchers(antMatcher("/recipes")).permitAll()
+				.requestMatchers(antMatcher("/ingredientlist")).hasAuthority("ADMIN")
 				.anyRequest().authenticated())
 				.headers(headers -> headers.frameOptions(frameoptions ->
 				frameoptions.disable()))

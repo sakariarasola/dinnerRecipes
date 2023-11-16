@@ -28,6 +28,7 @@
 
 	<br>
 	<a sec:authorize="hasAuthority('ADMIN')" href="/addingredient" class="btn btn-primary">Add ingredient</a>
+	<a sec:authorize="hasAuthority('ADMIN')" href="/recipelist" class="btn btn-primary">Go to recipe page</a>
 	<br>
 	<br>
 	<form th:action="@{/logout}" method="post">

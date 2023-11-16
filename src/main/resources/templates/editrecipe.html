@@ -12,19 +12,26 @@
 		<form th:object="${recipe}" th:action="@{../saverecipe}" action="#" method="post">
 			<input type="hidden" th:field="*{id}" class="form-control" />
 			<input type="text" th:field="*{name}" />
+			<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
 			<input type="text" th:field="*{allergen}" />
+			<span th:if="${#fields.hasErrors('allergen')}" th:errors="*{allergen}"></span>
 			<input type="text" th:field="*{difficulty}" />
+			<span th:if="${#fields.hasErrors('difficulty')}" th:errors="*{difficulty}"></span>
 			<input type="text" th:field="*{totaltime}" />
+			<span th:if="${#fields.hasErrors('totaltime')}" th:errors="*{totaltime}"></span>
 			<input type="text" th:field="*{servings}" />
+			<span th:if="${#fields.hasErrors('servings')}" th:errors="*{servings}"></span>
 			<select multiple id="ingredientlist" th:field="*{ingredients}" class="form-control">
 				<option th:each="ingredient: ${ingredients}" th:value="${ingredient.id}" th:text="${ingredient.name}">
 				</option>
 			</select>
 			<input type="text" th:field="*{instructions}" />
+			<span th:if="${#fields.hasErrors('instructions')}" th:errors="*{instructions}"></span>
 			<select id="cuisinelist" th:field="*{cuisine}" class="form-control">
 				<option th:each="cuisine: ${cuisines}" th:value="${cuisine.id}" th:text="${cuisine.name}">
 				</option>
 			</select>
+
 			<input type="submit" value="Save"></input>
 		</form>
 </body>
