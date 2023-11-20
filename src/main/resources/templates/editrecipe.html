@@ -9,12 +9,11 @@
 <body>
 	<h1>Edit recipe</h1>
 	<div>
-		<form th:object="${recipe}" th:action="@{../saverecipe}" action="#" method="post">
+		<form th:object="${recipe}" th:action="@{../saveeditrecipe}" action="#" method="post">
 			<input type="hidden" th:field="*{id}" class="form-control" />
 			<input type="text" th:field="*{name}" />
 			<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
 			<input type="text" th:field="*{allergen}" />
-			<span th:if="${#fields.hasErrors('allergen')}" th:errors="*{allergen}"></span>
 			<input type="text" th:field="*{difficulty}" />
 			<span th:if="${#fields.hasErrors('difficulty')}" th:errors="*{difficulty}"></span>
 			<input type="text" th:field="*{totaltime}" />

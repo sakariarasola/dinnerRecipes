@@ -11,7 +11,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
-import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Cuisine {
@@ -19,9 +18,7 @@ public class Cuisine {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cuisine_seq")
 	@SequenceGenerator(name = "cuisine_seq", sequenceName = "cuisine_seq", allocationSize = 1)
-	@NotNull
 	private long id;
-	@NotNull
 	private String name;
 
 	@JsonIgnore

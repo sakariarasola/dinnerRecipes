@@ -5,7 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotNull;
 
 @Entity(name = "users")
 public class Credentials {
@@ -13,16 +12,12 @@ public class Credentials {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false, updatable = false)
-	@NotNull
 	private Long id;
 	@Column(name = "username", nullable = false, unique = true)
-	@NotNull
 	private String username;
 	@Column(name = "password", nullable = false)
-	@NotNull
 	private String passwordHash;
 	@Column(name = "role", nullable = false)
-	@NotNull
 	private String role;
 
 	public Credentials() {

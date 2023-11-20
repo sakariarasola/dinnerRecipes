@@ -12,6 +12,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -20,19 +21,18 @@ public class Recipe {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "recipe_seq")
 	@SequenceGenerator(name = "recipe_seq", sequenceName = "recipe_seq", allocationSize = 1)
-	@NotNull
 	private Long id;
-	@NotNull
+	@NotBlank(message = "Recipe name cannot be blank")
 	private String name;
 	private String allergen;
-	@NotNull
+	@NotBlank(message = "Difficulty cannot be blank")
 	private String difficulty;
-	@NotNull
+	@NotNull(message = "Total time must be a number")
 	private int totaltime;
-	@NotNull
+	@NotNull(message = "Servings must be a number")
 	private int servings;
-	@NotNull
-	@Size(max = 10000)
+	@NotBlank(message = "Instructions cannot be blank")
+	@Size(max = 2000, message = "Too long instructions! Keep it within 2000 characters...")
 	private String instructions;
 
 	@ManyToMany

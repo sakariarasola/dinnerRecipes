@@ -9,20 +9,19 @@
 <body>
 	<h1>Add recipe</h1>
 	<div>
-		<form th:object="${recipe}" th:action="@{saverecipe}" action="#" method="post">
+		<form th:object="${recipe}" th:action="@{saveaddrecipe}" action="#" method="post">
 
 			<label for="name">Name</label>
 			<input type="text" id="name" th:field="*{name}" />
 			<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
 			<label for="allergen">Allergen</label>
 			<input type="text" id="allergen" th:field="*{allergen}" />
-			<span th:if="${#fields.hasErrors('allergen')}" th:errors="*{allergen}"></span>
 			<label for="difficulty">Difficulty</label>
 			<input type="text" id="difficulty" th:field="*{difficulty}" />
 			<span th:if="${#fields.hasErrors('difficulty')}" th:errors="*{difficulty}"></span>
 			<label for="totaltime">Total time</label>
 			<input type="text" id="totaltime" th:field="*{totaltime}" />
-			<span th:if="${#fields.hasErrors('totaltime')}" th:errors="*{totaltime}">Error</span>
+			<span th:if="${#fields.hasErrors('totaltime')}" th:errors="*{totaltime}"></span>
 			<label for="servings">Servings</label>
 			<input type="text" id="servings" th:field="*{servings}" />
 			<span th:if="${#fields.hasErrors('servings')}" th:errors="*{servings}"></span>

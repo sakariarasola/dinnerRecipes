@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 //import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import jakarta.validation.Valid;
 //import jakarta.validation.Valid;
 import sakke.dinnerRecipes.domain.CuisineRepository;
 import sakke.dinnerRecipes.domain.IngredientRepository;
@@ -69,8 +71,24 @@ public class RecipeController {
 		return "addrecipe";
 	}
 
-	@PostMapping(value = "/saverecipe")
-	public String save(Recipe recipe) {
+	@PostMapping(value = "/saveaddrecipe")
+	public String saveAdd(@Valid Recipe recipe, BindingResult bindingresult, Model model) {
+		if (bindingresult.hasErrors()) {
+			model.addAttribute("ingredients", irepository.findAll());
+			model.addAttribute("cuisines", crepository.findAll());
+			return "addrecipe";
+		}
+		repository.save(recipe);
+		return "redirect:recipelist";
+	}
+
+	@PostMapping(value = "/saveeditrecipe")
+	public String saveEdit(@Valid Recipe recipe, BindingResult bindingresult, Model model) {
+		if (bindingresult.hasErrors()) {
+			model.addAttribute("ingredients", irepository.findAll());
+			model.addAttribute("cuisines", crepository.findAll());
+			return "editrecipe";
+		}
 		repository.save(recipe);
 		return "redirect:recipelist";
 	}

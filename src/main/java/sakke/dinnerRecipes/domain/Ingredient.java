@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -18,10 +19,10 @@ public class Ingredient {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ingredient_seq")
 	@SequenceGenerator(name = "ingredient_seq", sequenceName = "ingredient_seq", allocationSize = 1)
-	@NotNull
 	private Long id;
-	@NotNull
+	@NotBlank(message = "Ingredient name cannot be blank")
 	private String name;
+	@NotNull(message = "Please enter 0.0 as no price")
 	private double unitprice;
 
 	@JsonIgnore

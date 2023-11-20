@@ -19,16 +19,10 @@ public class WebSecurityConfig {
 
 	@Bean
 	public SecurityFilterChain configure(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests(authorizeRequest -> authorizeRequest
-				.requestMatchers(antMatcher("/")).permitAll()
-				//.requestMatchers(antMatcher("/recipes")).permitAll()
-				.requestMatchers(antMatcher("/ingredientlist")).hasAuthority("ADMIN")
-				.anyRequest().authenticated())
-				.headers(headers -> headers.frameOptions(frameoptions ->
-				frameoptions.disable()))
-				.formLogin(formlogin -> formlogin
-						// .loginPage("/login")
-						.defaultSuccessUrl("/recipelist", true).permitAll())
+		http.authorizeHttpRequests(authorizeRequest -> authorizeRequest.requestMatchers(antMatcher("/")).permitAll()
+				.requestMatchers(antMatcher("/ingredientlist")).hasAuthority("ADMIN").anyRequest().authenticated())
+				.headers(headers -> headers.frameOptions(frameoptions -> frameoptions.disable()))
+				.formLogin(formlogin -> formlogin.defaultSuccessUrl("/recipelist", true).permitAll())
 				.logout(logout -> logout.permitAll());
 		return http.build();
 	}
